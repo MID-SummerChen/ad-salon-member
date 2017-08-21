@@ -1,5 +1,5 @@
 <template>
-  <header data-uk-sticky>
+  <header>
     <div class="header-logo">LOGO</div>
     <div class="header-btns">
       <i class="fa fa-bars"></i>
@@ -21,15 +21,8 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-header 
-  height: 80px 
-  display flex 
-  .header-logo
-    flex-grow: 1
-  
-  .header-btns
-    //
+<style lang="stylus">
+
 
 
 </style>

@@ -16,6 +16,14 @@ import Calendar from '@/components/pages/Calendar'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
+  scrollBehavior (to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        selector: to.hash
+      }
+    }
+  },
   routes: [
     {
       path: '/',
@@ -49,7 +57,8 @@ export default new Router({
         {
           path: '/store/view',
           name: 'StoreView',
-          component: StoreView
+          component: StoreView,
+          meta: { scrollToTop: true }
         },
         {
           path: '/work/view',
@@ -59,7 +68,8 @@ export default new Router({
         {
           path: '/designer/view',
           name: 'DesignerView',
-          component: DesignerView
+          component: DesignerView,
+          meta: { scrollToTop: true }
         },
         {
           path: '/checkout',

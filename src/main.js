@@ -6,7 +6,9 @@ import router from './router'
 
 import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
+import '@/assets/muse-custom.less'
 import 'vue-material/dist/vue-material.css'
+import '@/assets/var.styl'
 import '@/assets/style.styl'
 var VueMaterial = require('vue-material')
 
