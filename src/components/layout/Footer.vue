@@ -1,7 +1,10 @@
 <template>
   <footer>
     <div class="container">
-      聯絡資訊(客服), 加入我們, 管理後台入口, Q&A
+      <a href="">聯絡資訊</a>
+      <a href="">加入我們</a>
+      <a href="">Q&A</a>
+      <a href="">管理後台入口</a>
     </div>
   </footer>
 </template>

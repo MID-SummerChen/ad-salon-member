@@ -15,14 +15,14 @@
             </div> -->
             <h3>傑克森</h3>
             <hr>
-            <p><span><i class="fa fa-picture-o"></i>作品數</span><a href="#work" data-uk-smooth-scroll="{offset: 0}">10</a> 件</p>
+            <p><span><i class="fa fa-picture-o"></i>作品數</span><a href="#work" data-uk-smooth-scroll="{offset: 80}">10</a> 件</p>
             <p><span><i class="fa fa-dollar"></i>指定金額</span>100 元</p>
             <p><span><i class="fa fa-user"></i>資歷</span>3 年</p>
-            <p><span><i class="fa fa-map-marker"></i>髮廊名稱</span>CUTE SALON</p>
+            <p><span><i class="fa fa-map-marker"></i>髮廊名稱</span><router-link :to="{name: 'StoreView'}">CUTE SALON</router-link></p>
             <hr>
             <div class="centerBtns">
-              <a href="#desc" class="btn btn-default" data-uk-smooth-scroll="{offset: 0}">設計師介紹</a>
-              <a href="#work" class="btn btn-default" data-uk-smooth-scroll="{offset: 0}">作品集</a>
+              <a href="#desc" class="btn btn-default" data-uk-smooth-scroll="{offset: 80}">設計師介紹</a>
+              <a href="#work" class="btn btn-default" data-uk-smooth-scroll="{offset: 80}">作品集</a>
             </div>
             <div class="bottomBtns">
               <mu-raised-button @click="$router.push({name: 'StoreView', hash: '#service'})" label="立即預約" primary fullWidth/>
@@ -48,7 +48,7 @@
             <md-card>
               <md-card-area>
                 <md-card-media>
-                  <a href=""><img src="/static/imgs/work01.jpg"></a>
+                  <router-link :to="{name: 'WorkView'}"><img src="/static/imgs/work01.jpg"></router-link>
                 </md-card-media>
               </md-card-area>
                <md-card-actions>
@@ -90,8 +90,9 @@ export default {
   padding-bottom: 100px
   .main 
     background-color: #fff
-    padding: 50px 0
-    // height: 500px
+    padding: 40px 0
+    @media screen and (max-width: 767px)
+      padding-top: 20px
     .intro 
       position: relative
       .topBtns 

@@ -3,12 +3,12 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import store from './store'
 
 import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
 import '@/assets/muse-custom.less'
 import 'vue-material/dist/vue-material.css'
-import '@/assets/var.styl'
 import '@/assets/style.styl'
 var VueMaterial = require('vue-material')
 
@@ -21,6 +21,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

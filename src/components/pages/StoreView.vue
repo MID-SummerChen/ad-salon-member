@@ -34,20 +34,26 @@
             </div> -->
             <h3>CUTE SALON</h3>
             <hr>
-            <p><span><i class="fa fa-picture-o"><md-tooltip md-direction="top">作品數</md-tooltip></i>作品數</span><a href="">10</a> 件</p>
-            <p><span><i class="fa fa-users"><md-tooltip md-direction="top">設計師數</md-tooltip></i>設計師數</span><a href="">5</a> 位</p>
-            <p><span><i class="fa fa-map-marker"><md-tooltip md-direction="top">髮廊地址</md-tooltip></i>髮廊地址</span><a href="">台中市南區新河街100號10Ｆ</a></p>
-            <p><span><i class="fa fa-commenting-o"><md-tooltip md-direction="top">留言總數</md-tooltip></i>留言總數</span><a href="">23</a> 筆</p>
+            <p>
+              <span><i class="fa fa-picture-o"></i>作品數</span>
+              <a href="#work" data-uk-smooth-scroll="{offset: 80}">10</a> 件
+            </p>
+            <p>
+              <span><i class="fa fa-users"></i>設計師數</span>
+              <a href="#designer" data-uk-smooth-scroll="{offset: 80}">5</a> 位
+            </p>
+            <p><span><i class="fa fa-map-marker"></i>髮廊地址</span><a href="#map" data-uk-smooth-scroll="{offset: 80}">台中市南區新河街100號10Ｆ</a></p>
+            <p><span><i class="fa fa-commenting-o"></i>留言總數</span><a href="">23</a> 筆</p>
             <hr>
             <div class="centerBtns">
-              <a href="#desc" class="btn btn-default" data-uk-smooth-scroll="{offset: 0}">髮廊介紹</a>
-              <a href="#service" class="btn btn-default" data-uk-smooth-scroll="{offset: 0}">價目表</a>
-              <a href="#designer" class="btn btn-default" data-uk-smooth-scroll="{offset: 0}">設計師介紹</a>
-              <a href="#work" class="btn btn-default" data-uk-smooth-scroll="{offset: 0}">作品集</a>
-              <a href="#comment" class="btn btn-default" data-uk-smooth-scroll="{offset: 0}">消費評價</a>
+              <a href="#desc" class="btn btn-default" data-uk-smooth-scroll="{offset: 80}">髮廊介紹</a>
+              <a href="#service" class="btn btn-default" data-uk-smooth-scroll="{offset: 80}">價目表</a>
+              <a href="#designer" class="btn btn-default" data-uk-smooth-scroll="{offset: 80}">設計師介紹</a>
+              <a href="#work" class="btn btn-default" data-uk-smooth-scroll="{offset: 80}">作品集</a>
+              <a href="#comment" class="btn btn-default" data-uk-smooth-scroll="{offset: 80}">消費評價</a>
             </div>
             <div class="bottomBtns">
-              <a href="#service" class="btn btn-block btn-default" data-uk-smooth-scroll="{offset: 0}">立即預約</a>
+              <a href="#service" class="btn btn-block btn-default" data-uk-smooth-scroll="{offset: 80}">立即預約</a>
               <a href="" class="btn dark btn-block btn-default">加入收藏</a>
               <!-- <mu-raised-button label="立即預約" @click="$router.push({name: 'StoreView', hash: '#service'})" primary fullWidth/>
               <mu-raised-button label="加入收藏" secondary  fullWidth/> -->
@@ -125,35 +131,11 @@
             <md-card>
               <md-card-area>
                 <md-card-media>
-                  <a href=""><img src="/static/imgs/work01.jpg"></a>
+                  <router-link :to="{name: 'WorkView'}">
+                    <img src="/static/imgs/work01.jpg">
+                  </router-link>
                 </md-card-media>
-
-                <!-- <md-card-header>
-                  <div class="md-title">CUTE SALON</div>
-                  <div class="md-subhead">台中市北區一中街100號2F</div>
-                </md-card-header> -->
-
-                <!-- <md-card-content>
-                  店名, 資料圖片第一張, 作品數, 設計師人數, 地址, 留言評價數
-                </md-card-content> -->
               </md-card-area>
-
-              <!-- <md-card-actions>
-                <md-button class="md-icon-button">
-                  <md-icon>favorite</md-icon>
-                  <md-tooltip md-direction="top">加入收藏</md-tooltip>
-                </md-button>
-
-                <md-button class="md-icon-button">
-                  <md-icon>collections</md-icon>
-                  <md-tooltip md-direction="top">作品集</md-tooltip>
-                </md-button>
-
-                <md-button class="md-icon-button">
-                  <md-icon>event</md-icon>
-                  <md-tooltip md-direction="top">立即預約</md-tooltip>
-                </md-button>
-              </md-card-actions> -->
             </md-card>
           </div>
         </div>
@@ -169,7 +151,9 @@
             <md-card>
               <md-card-area>
                 <md-card-media>
-                  <img src="/static/imgs/work01.jpg">
+                  <router-link :to="{name: 'DesignerView'}">
+                    <img src="/static/imgs/work01.jpg">
+                  </router-link>
                 </md-card-media>
 
                 <md-card-header>
@@ -204,6 +188,41 @@
         </div>
       </div>
     </div>
+
+    <div id="comment" class="sec">
+      <div class="container">
+        <h3>最新評價</h3>
+        <div class="uk-grid-width-small-1-1" data-uk-grid>
+          <div class="card-wrap" v-for="n in 3">
+            <md-card>
+              <md-card-header>
+                <md-card-header-text>
+                  <div class="md-title">評價的標題在這</div>
+                  <div class="md-subhead">by 艾莉莎</div>
+                  <md-rating-bar v-model="rating" :md-max-rating="5" class="md-warn" disabled></md-rating-bar>
+                  <div class="md-content">fafjeifaweffafjeifaweffafjeifaweffafjeifawef, fafjeifaweffafjeifawef
+                    fafjeifaweffafjeifaweffafjeifawef,fafjeifaweffafjeifaweffafjeifaweffafjeifaweffaf, jeifaweffafjeifaweffafjeifaweffafjeifaweffafjeifawef.</div>
+                </md-card-header-text>
+
+                <!-- <md-card-media>
+                  <img src="/static/imgs/work01.jpg">
+                </md-card-media> -->
+              </md-card-header>
+
+              <!-- <md-card-actions>
+                <md-button>Action</md-button>
+                <md-button>Action</md-button>
+              </md-card-actions> -->
+            </md-card>
+          </div>
+        </div>
+        <!-- <div class="more"><mu-raised-button label="看更多作品" secondary/></div> -->
+      </div>
+    </div>
+
+    <div id="map" class="sec">
+      <div ref="map" class="map"></div>
+    </div>
     
     
   </div>
@@ -214,20 +233,44 @@ export default {
   name: 'StoreView',
   data () {
     return {
+      rating: 4.5
+    }
+  },
+  mounted() {
+    this.initMap()
+  },
+  methods: {
+    async initMap() {
+      var data = {
+        key: "AIzaSyCBVY-1DcsBageoWwtD8MGdRx0isT5kpeY",
+        address: "台中市",
+      }
+      var res = await $.get('https://maps.googleapis.com/maps/api/geocode/json', data)
+      if(res.status === 'OK') {
+        var location = res.results[0].geometry.location
+        var _opt = {center: location, zoom: 15};
+        var map = new google.maps.Map(this.$refs.map, _opt);
 
+        var marker = new google.maps.Marker({
+          position: location,
+          map
+        });
+      }
     }
   }
+  
 }
 </script>
 
 <style lang="stylus">
 #StoreView
   background-color: #f5f5f5
-  padding-bottom: 100px
+  // padding-bottom: 100px
   .main 
     background-color: #fff
-    padding: 50px 0
-    // height: 500px
+    padding: 40px 0
+    @media screen and (max-width: 767px)
+      padding-top: 20px
     .slider 
       a:not(.md-button):not(.md-bottom-bar-item):hover
         text-decoration none
@@ -297,7 +340,7 @@ export default {
       // font-weight bold
       &::after 
         content: ""
-        border-bottom: 1px solid #4DEFD4
+        border-bottom: 2px solid #4DEFD4
         display block
         width: 70px 
         margin: 20px auto
@@ -316,6 +359,7 @@ export default {
         background-color: #fff
         padding: 0 20px
         margin-top: 40px
+        box-shadow 0 2px 5px rgba(#000, 0.1)
         @media screen and (max-width: 767px)
           .table-responsive
             border: 0
@@ -345,6 +389,17 @@ export default {
     &#work 
       .card-wrap
         padding: 15px
+    &#map 
+      .map 
+        width: 100% 
+        height: 500px
+    &#comment 
+      .md-card 
+        .md-title
+          font-size: 22px
+        .md-rating-bar
+          padding: 10px 0
+
 
 
 </style>

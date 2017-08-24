@@ -15,7 +15,7 @@ import Calendar from '@/components/pages/Calendar'
 
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   mode: 'history',
   scrollBehavior (to, from, savedPosition) {
     if (to.hash) {
@@ -32,27 +32,32 @@ export default new Router({
         {
           path: '',
           name: 'Home',
-          component: Home
+          component: Home,
+          meta: { scrollToTop: true }
         },
         {
           path: '/my/info',
           name: 'MyInfo',
-          component: MyInfo
+          component: MyInfo,
+          meta: { scrollToTop: true }
         },
         {
           path: '/my/favorite',
           name: 'MyFavorite',
-          component: MyFavorite
+          component: MyFavorite,
+          meta: { scrollToTop: true }
         },
         {
           path: '/my/orders',
           name: 'MyOrders',
-          component: MyOrders
+          component: MyOrders,
+          meta: { scrollToTop: true }
         },
         {
           path: '/search-result/store',
           name: 'StoreSearchResult',
-          component: StoreSearchResult
+          component: StoreSearchResult,
+          meta: { scrollToTop: true }
         },
         {
           path: '/store/view',
@@ -63,7 +68,8 @@ export default new Router({
         {
           path: '/work/view',
           name: 'WorkView',
-          component: WorkView
+          component: WorkView,
+          meta: { scrollToTop: true }
         },
         {
           path: '/designer/view',
@@ -74,14 +80,26 @@ export default new Router({
         {
           path: '/checkout',
           name: 'Checkout',
-          component: Checkout
+          component: Checkout,
+          meta: { scrollToTop: true }
         },
         {
           path: '/calendar',
           name: 'Calendar',
-          component: Calendar
+          component: Calendar,
+          meta: { scrollToTop: true }
         },
       ]
     },
   ]
 })
+
+
+router.beforeEach(async (to, from, next) => {
+  window.scrollTo(0, 0)
+  next()
+  
+})
+
+
+export default router
