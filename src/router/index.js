@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Dashboard from '@/components/layout/Dashboard'
 import Home from '@/components/pages/Home'
+import Register from '@/components/pages/Register'
 import MyInfo from '@/components/pages/MyInfo'
 import MyFavorite from '@/components/pages/MyFavorite'
 import MyOrders from '@/components/pages/MyOrders'
@@ -12,6 +13,7 @@ import WorkView from '@/components/pages/WorkView'
 import DesignerView from '@/components/pages/DesignerView'
 import Checkout from '@/components/pages/Checkout'
 import Calendar from '@/components/pages/Calendar'
+import StoreSchedule from '@/components/pages/StoreSchedule'
 
 Vue.use(Router)
 
@@ -33,6 +35,12 @@ const router =  new Router({
           path: '',
           name: 'Home',
           component: Home,
+          meta: { scrollToTop: true }
+        },
+        {
+          path: '/register',
+          name: 'Register',
+          component: Register,
           meta: { scrollToTop: true }
         },
         {
@@ -87,6 +95,12 @@ const router =  new Router({
           path: '/calendar',
           name: 'Calendar',
           component: Calendar,
+          meta: { scrollToTop: true }
+        },
+        {
+          path: '/schedule',
+          name: 'StoreSchedule',
+          component: StoreSchedule,
           meta: { scrollToTop: true }
         },
       ]

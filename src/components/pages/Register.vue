@@ -1,19 +1,31 @@
 <template>
-  <div id="MyInfo">
-    <h3 class="pageTitle">會員中心</h3>
+  <div id="Register">
+    <h3 class="pageTitle">會員註冊</h3>
     <div class="container">
       <div class="paper">
         <form class="form-horizontal">
           <div class="form-group">
             <label class="col-sm-3 control-label">帳號</label>
             <div class="col-sm-9">
-              <p class="form-control-static">{{form.acc}}</p>
+              <mu-text-field v-model="form.acc" hintText=""/>
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-3 control-label">暱稱</label>
             <div class="col-sm-9">
               <mu-text-field v-model="form.nick" hintText=""/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">密碼</label>
+            <div class="col-sm-9">
+              <mu-text-field v-model="form.pw" hintText=""/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label">密碼確認</label>
+            <div class="col-sm-9">
+              <mu-text-field v-model="form.pw_c" hintText=""/>
             </div>
           </div>
           <div class="form-group">
@@ -41,7 +53,7 @@
         </form>
         <div class="btn-wrap">
           <mu-raised-button label="確認修改" primary/>
-          <mu-raised-button label="忘記密碼" secondary/>
+          <mu-raised-button label="重設" secondary/>
         </div>
       </div>
       
@@ -51,14 +63,16 @@
 
 <script>
 export default {
-  name: 'MyInfo',
+  name: 'Register',
   data () {
     return {
       form: {
-        acc: "summer987",
-        nick: "陳夏天",
-        email: "summer987@gmail.com",
-        phone: "0921-888765",
+        acc: "",
+        nick: "",
+        pw: "",
+        pw_c: "",
+        email: "",
+        phone: "",
         gender: 1,
       }
     }
@@ -67,7 +81,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-#MyInfo 
+#Register 
   padding 50px 0
   padding-bottom: 100px
   background-color: #f5f5f5

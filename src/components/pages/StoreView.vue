@@ -32,18 +32,18 @@
               <button class="btn btn-default">收藏</button>
               <button class="btn btn-default">預約</button>
             </div> -->
-            <h3>CUTE SALON</h3>
+            <h3>{{storeData.storeName}}</h3>
             <hr>
             <p>
               <span><i class="fa fa-picture-o"></i>作品數</span>
-              <a href="#work" data-uk-smooth-scroll="{offset: 80}">10</a> 件
+              <a href="#work" data-uk-smooth-scroll="{offset: 80}">{{storeData.work}}</a> 件
             </p>
             <p>
               <span><i class="fa fa-users"></i>設計師數</span>
-              <a href="#designer" data-uk-smooth-scroll="{offset: 80}">5</a> 位
+              <a href="#designer" data-uk-smooth-scroll="{offset: 80}">{{storeData.designer}}</a> 位
             </p>
-            <p><span><i class="fa fa-map-marker"></i>髮廊地址</span><a href="#map" data-uk-smooth-scroll="{offset: 80}">台中市南區新河街100號10Ｆ</a></p>
-            <p><span><i class="fa fa-commenting-o"></i>留言總數</span><a href="">23</a> 筆</p>
+            <p><span><i class="fa fa-map-marker"></i>髮廊地址</span><a href="#map" data-uk-smooth-scroll="{offset: 80}">{{storeData.address}}</a></p>
+            <p><span><i class="fa fa-commenting-o"></i>評價數</span><a href="">??</a> 筆</p>
             <hr>
             <div class="centerBtns">
               <a href="#desc" class="btn btn-default" data-uk-smooth-scroll="{offset: 80}">髮廊介紹</a>
@@ -65,14 +65,13 @@
     <div id="desc" class="sec">
       <div class="container">
         <h3>店家介紹</h3>
-        <p>店家介紹在這裡店家介紹在這裡店家介紹在這裡店家介紹在這裡店家介紹在這裡，店家介紹在這裡店家介紹在這裡店家介紹在這裡，
-        店家介紹在這裡店家介紹在這裡店家介紹在這裡，店家介紹在這裡店家介紹在這裡店家介紹在這裡店家介紹在這裡店家介紹在這裡店家介紹在這裡店家介紹在這裡。</p>
+        <p>{{storeData.descr}}</p>
       </div>
     </div>
     <div id="service" class="sec">
       <div class="container">
         <h3>服務項目</h3>
-        <div class="paper">
+        <div v-if="promotionList.length > 0" class="paper">
           <div class="table-responsive">
             <table>
               <thead>
@@ -81,13 +80,13 @@
                 </tr>
               </thead> 
               <tbody>
-                <tr v-for="n in 3">
-                  <td style="width: 200px">韓式空氣剪髮</td>
+                <tr v-for="n in promotionList">
+                  <td>韓式空氣剪髮</td>
                   <!-- <td style="width: 150px"><img src="/static/imgs/work01.jpg" alt=""></td> -->
-                  <td style="width: 200px">480 元</td>
-                  <td style="width: 200px">1.5 hr</td>
+                  <td>480 元</td>
+                  <td>1.5 hr</td>
                   <td style="min-width: 200px">
-                    <mu-raised-button label="立即預約" primary/>
+                    <mu-raised-button label="立即預約" @click="$router.push({name: 'StoreSchedule'})" primary/>
                     <!-- <mu-raised-button label="收藏" secondary/> -->
                   </td>
                 </tr>
@@ -96,7 +95,7 @@
           </div>
           
         </div>
-        <div class="paper">
+        <div v-if="priceList.length > 0" class="paper">
           <div class="table-responsive">
             <table>
               <thead>
@@ -105,13 +104,13 @@
                 </tr>
               </thead> 
               <tbody>
-                <tr v-for="n in 5">
-                  <td style="width: 200px">韓式空氣剪髮</td>
+                <tr v-for="n in priceList">
+                  <td>{{n.name}}</td>
                   <!-- <td style="width: 150px"><img src="/static/imgs/work01.jpg" alt=""></td> -->
-                  <td style="width: 200px">480 元</td>
-                  <td style="width: 200px">1.5 hr</td>
-                  <td style="min-width: 200px">
-                    <mu-raised-button label="立即預約" primary/>
+                  <td>{{n.price}} 元</td>
+                  <td>{{n.neededTime}} hr</td>
+                  <td>
+                    <mu-raised-button label="立即預約" @click="onPriceClicked(n.priceGuid)" primary/>
                     <!-- <mu-raised-button label="收藏" secondary/> -->
                   </td>
                 </tr>
@@ -127,7 +126,7 @@
         <h3>最新作品</h3>
 
         <div class="uk-grid-width-small-1-2 uk-grid-width-medium-1-5" data-uk-grid>
-          <div v-for="n in 10" class="card-wrap">
+          <div v-for="w in workList" class="card-wrap">
             <md-card>
               <md-card-area>
                 <md-card-media>
@@ -147,7 +146,7 @@
         <h3>設計師介紹</h3>
 
         <div class="uk-grid-width-small-1-2 uk-grid-width-medium-1-4" data-uk-grid>
-          <div v-for="n in 6" class="card-wrap">
+          <div v-for="d in designerList" class="card-wrap">
             <md-card>
               <md-card-area>
                 <md-card-media>
@@ -157,8 +156,8 @@
                 </md-card-media>
 
                 <md-card-header>
-                   <div class="md-title">傑克森</div> 
-                    <div class="md-subhead">CUTE SALON</div>  
+                   <div class="md-title">{{d.nick}}</div> 
+                    <!-- <div class="md-subhead">CUTE SALON</div>   -->
                 </md-card-header>
 
                 <!-- <md-card-content>
@@ -177,7 +176,7 @@
                   <md-tooltip md-direction="top">作品集</md-tooltip>
                 </md-button>
 
-                <md-button class="md-icon-button">
+                <md-button class="md-icon-button" @click="$router.push({name: 'StoreSchedule'})">
                   <md-icon>event</md-icon>
                   <md-tooltip md-direction="top">立即預約</md-tooltip>
                 </md-button>
@@ -229,21 +228,66 @@
 </template>
 
 <script>
+import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
   name: 'StoreView',
   data () {
     return {
-      rating: 4.5
+      rating: 4.5,
+      storeData: {},
+      designerList: [],
+      workList: [],
+      promotionList: [],
+      priceList: [],
     }
   },
   mounted() {
-    this.initMap()
+    this.getStore()
+    this._getDesignerList()
+    this._getWorkList()
+    this._getPriceList()
+    
   },
   methods: {
-    async initMap() {
+    ...mapActions([
+      'getStoreList',
+      'getDesignerList',
+      'getWorkList',
+      'getPriceList',
+    ]),
+    onPriceClicked(priceGuid) {
+      this.$router.push({name: 'StoreSchedule', query: {prc_id: priceGuid}})
+    },
+    async getStore() {
+      var res = await this.getStoreList({noid_mask: this.$route.query.noid})
+      if(res.code === 0 && res.data.storeList[0]) {
+        this.storeData = res.data.storeList[0]
+        this.initMap("台中南區")
+      }
+    },
+    async _getDesignerList() {
+      var res = await this.getDesignerList({storeGuid: this.$route.query.guid})
+      if(res.code === 0) {
+        this.designerList = _.filter(res.data.designerList, {appoint: 1})
+      }
+    },
+    async _getPriceList() {
+      var res = await this.getPriceList({storeGuid: this.$route.query.guid})
+      if(res.code === 0) {
+        this.promotionList = _.filter(res.data.priceList, {priceType: '2'})
+        this.priceList = _.filter(res.data.priceList, {priceType: '1'})
+      }
+    },
+    async _getWorkList() {
+      var res = await this.getWorkList({storeGuid: this.$route.query.guid})
+      if(res.code === 0) {
+        this.workList = res.data.workList
+      }
+    },
+    async initMap(address) {
       var data = {
         key: "AIzaSyCBVY-1DcsBageoWwtD8MGdRx0isT5kpeY",
-        address: "台中市",
+        address,
       }
       var res = await $.get('https://maps.googleapis.com/maps/api/geocode/json', data)
       if(res.status === 'OK') {
@@ -358,6 +402,7 @@ export default {
       .paper 
         background-color: #fff
         padding: 0 20px
+        padding-bottom: 30px
         margin-top: 40px
         box-shadow 0 2px 5px rgba(#000, 0.1)
         @media screen and (max-width: 767px)
@@ -366,14 +411,33 @@ export default {
         table 
           width: 100%
           min-width: 800px
+          @media screen and (max-width: 767px)
+            min-width: 100%
           thead 
             border-bottom: 1px solid #eee
+
+          tbody > tr 
+            @media screen and (max-width: 767px)
+              padding: 15px 0
           tr 
             border-bottom: 1px solid #eee
-            th, td 
+            @media screen and (max-width: 767px)
+              display: flex
+              flex-direction column
+              
+            th 
+              text-align: center
               padding: 20px
+              font-size: 16px
+            td 
+              padding: 10px 0
               text-align center
               font-size: 16px
+              min-width: 200px
+              @media screen and (max-width: 767px)
+                min-width: 100%
+              
+
               img 
                 width: 100%
 
