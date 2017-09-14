@@ -130,7 +130,7 @@
             <md-card>
               <md-card-area>
                 <md-card-media>
-                  <router-link :to="{name: 'WorkView'}">
+                  <router-link :to="{name: 'WorkView', query: {work_id: w.workGuid}}">
                     <img src="/static/imgs/work01.jpg">
                   </router-link>
                 </md-card-media>
@@ -262,7 +262,7 @@ export default {
       var res = await this.getStoreList({noid_mask: this.$route.query.noid})
       if(res.code === 0 && res.data.storeList[0]) {
         this.storeData = res.data.storeList[0]
-        this.initMap("台中南區")
+        this.initMap(this.storeData.address)
       }
     },
     async _getDesignerList() {

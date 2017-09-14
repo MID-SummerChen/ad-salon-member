@@ -36,8 +36,8 @@ export default {
   data () {
     return {
       searchForm: {
-        city: "",
-        area: "",
+        city: this.$route.query.city,
+        area: this.$route.query.area,
       },
       storeList: [],
     }
@@ -51,6 +51,9 @@ export default {
       return i > -1 ? _.map(this.postCode[i].areaList, "area") : []
     }
   },
+  watch: {
+    $route: "_getStoreList"
+  },
   async mounted() {
     await this._getStoreList()
   },
@@ -59,6 +62,7 @@ export default {
       'getStoreList'
     ]),
     async _getStoreList() {
+      this.storeList = []
       var {city, area} = this.$route.query
       var data = {
         address_mask: city + area
